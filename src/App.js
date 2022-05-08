@@ -17,12 +17,31 @@ class App extends Component {
     }));
   };
 
+  toggleWatched = (id) => {
+    // console.log("toggleWatched");
+    this.setState((prevState) => ({
+      movies: prevState.movies.map((movie) => {
+        // console.log(id);
+
+        if (movie.id === id) {
+          return {
+            ...movie,
+            isWatched: !movie.isWatched,
+          };
+        }
+        return movie;
+      }),
+    }));
+  };
+
   render() {
     const { isShown, movies } = this.state;
     return (
       <>
         <Button showFilms={this.showFilms} isShown={isShown} />
-        {isShown && <GalleryList movies={movies} />}
+        {isShown && (
+          <GalleryList movies={movies} toggleWatched={this.toggleWatched} />
+        )}
       </>
     );
   }
