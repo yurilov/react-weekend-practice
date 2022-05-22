@@ -1,12 +1,13 @@
 import propTypes from "prop-types";
 
-export const Button = ({ showFilms, isShown }) => {
+export const Button = ({ onClick }) => {
   return (
-    <button onClick={showFilms}>{isShown ? "Hide films" : `Show Films`}</button>
+    <button type="button" onClick={onClick}>
+      Load More
+    </button>
   );
 };
 
 Button.propTypes = {
-  showFilms: propTypes.func.isRequired,
-  isShown: propTypes.bool.isRequired,
+  onClick: propTypes.func.isRequired,
 };

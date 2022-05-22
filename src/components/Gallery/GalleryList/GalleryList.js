@@ -27,5 +27,5 @@ GalleryList.propTypes = {
       isWatched: propTypes.bool.isRequired,
     })
   ),
-  toggleWatched: propTypes.func.isRequired,
+  toggleWatched: propTypes.func,
 };
