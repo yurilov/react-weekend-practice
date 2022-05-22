@@ -6,6 +6,7 @@ import { mapper } from "./utils/mapper";
 import { getMovies } from "../src/services/api";
 import { Button } from "./components/Button/Button";
 import { GalleryList } from "./components/Gallery/GalleryList/GalleryList";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   // state = {
@@ -16,6 +17,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -31,6 +33,14 @@ function App() {
   const onClick = () => {
     const nextPage = page + 1;
     setPage(nextPage);
+  };
+
+  const openModal = (image) => {
+    setImage(image);
+  };
+
+  const closeModal = () => {
+    setImage("");
   };
 
   // const toggleWatched = (id) => {
@@ -51,8 +61,10 @@ function App() {
 
   return (
     <>
-      <GalleryList movies={movies} />
+      <GalleryList movies={movies} onClick={openModal} />
+      {isLoading && <h1>Loading...</h1>}
       <Button onClick={onClick}></Button>
+      {image && <Modal img={image} closeModal={closeModal} />}
     </>
   );
 }

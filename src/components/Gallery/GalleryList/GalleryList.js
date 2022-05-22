@@ -1,7 +1,7 @@
 import propTypes from "prop-types";
 import { GalleryListItem } from "../GalleryListItem/GalleryListItem";
 
-export const GalleryList = ({ movies, toggleWatched }) => {
+export const GalleryList = ({ movies, toggleWatched, onClick }) => {
   return (
     <ul>
       {movies.map(({ img, title, id, isWatched }) => (
@@ -12,6 +12,7 @@ export const GalleryList = ({ movies, toggleWatched }) => {
           key={id}
           isWatched={isWatched}
           toggleWatched={toggleWatched}
+          onClick={onClick}
         />
       ))}
     </ul>
@@ -27,5 +28,6 @@ GalleryList.propTypes = {
       isWatched: propTypes.bool.isRequired,
     })
   ),
-  toggleWatched: propTypes.func,
+  toggleWatched: propTypes.func.isRequired,
+  onClick: propTypes.func.isRequired,
 };

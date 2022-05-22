@@ -6,10 +6,15 @@ export const GalleryListItem = ({
   title,
   isWatched,
   toggleWatched,
+  onClick,
 }) => {
   return (
     <li id={id}>
-      <img src={`https://image.tmdb.org/t/p/w500${img}`} alt={title} />
+      <img
+        src={`https://image.tmdb.org/t/p/w500${img}`}
+        alt={title}
+        onClick={() => onClick(img)}
+      />
       <h2>{title}</h2>
       <p onClick={() => toggleWatched(id)}>Watched: {isWatched.toString()}</p>
     </li>
@@ -22,4 +27,5 @@ GalleryListItem.propTypes = {
   id: propTypes.number.isRequired,
   isWatched: propTypes.bool.isRequired,
   toggleWatched: propTypes.func.isRequired,
+  onClick: propTypes.func.isRequired,
 };
